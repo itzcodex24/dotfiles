@@ -37,6 +37,12 @@ My shell prompt of choice – minimal, blazing-fast, and beautifully informative
 ### 🖥️ ghostty
 A GPU-accelerated terminal emulator that's fast, beautiful, and built with developer ergonomics in mind. Smooth rendering and high performance make it a key part of my daily workflow.
 
+### 🍞 bun
+A modern JavaScript runtime like Node.js, but faster and more efficient. I use [bun](https://bun.sh/) for running scripts, managing packages, and building JS/TS projects at lightning speed.
+
+### 🍺 Homebrew
+The missing package manager for macOS (and Linux). I use [Homebrew](https://brew.sh/) to install and manage CLI tools, fonts, and GUI apps. It keeps my system tidy and my tools up-to-date.
+
 ---
 
 ## 🛠 Dotfiles Managed with chezmoi
