@@ -8,7 +8,7 @@
 
 ## 📦 Overview
 
-Welcome to my dotfiles! These configuration files are what power and personalize my development environment. Managed seamlessly with [chezmoi](https://www.chezmoi.io/) 🏠, this repo is the single source of truth for my tools, terminal, and editor configurations.
+Welcome to my dotfiles! These configuration files power and personalize my development environment. Managed seamlessly with [chezmoi](https://www.chezmoi.io/) 🏠, this repo is the single source of truth for my terminal, editor, and CLI tools.
 
 > ⚠️ **Work in Progress**: Constantly evolving as I tweak, experiment, and optimize my workflow.
 
@@ -17,50 +17,59 @@ Welcome to my dotfiles! These configuration files are what power and personalize
 ## ⚙️ Tools I Use
 
 ### 📝 Neovim (with LazyVim)
-My primary editor, supercharged with [LazyVim](https://www.lazyvim.org/) – a modular Neovim config powered by lazy-loading plugins for speed and simplicity. It's my go-to for writing code, markdown, and everything in between.
+My primary editor, supercharged with [LazyVim](https://www.lazyvim.org/) – a modular, lazy-loading plugin manager that keeps Neovim snappy and modern. Ideal for both coding and quick notes.
+
+### 🧰 tmux
+My terminal multiplexer of choice – [tmux](https://github.com/tmux/tmux) allows me to manage multiple terminal sessions efficiently. Paired with sensible keybindings and plugins for a seamless workflow across panes and windows.
+
+### 💻 zsh
+My preferred shell, powered by a curated plugin ecosystem and theming via [starship](https://starship.rs/). It provides intelligent autosuggestions, syntax highlighting, and a rich interactive experience.
 
 ### 📊 lazygit
-A lightweight terminal UI for Git. I use lazygit to stage, commit, rebase, and push code quickly without ever leaving the terminal. Git just feels better with it.
+A simple, fast, and powerful terminal UI for Git. I use it to manage commits, branches, and merge conflicts with ease – without leaving the terminal.
 
 ### 📁 yazi
-A blazing fast terminal file manager written in Rust 🚀. Think of it like a modern `nnn` or `ranger` – sleek, customizable, and productivity-focused.
+A modern, Rust-based terminal file manager – sleek, responsive, and packed with features. A joy to use compared to traditional alternatives.
 
 ### 🌌 starship
-My minimal, blazing-fast, and highly customizable shell prompt. Works across shells and displays contextual info beautifully. Keeps my terminal aesthetic clean and informative.
+My shell prompt of choice – minimal, blazing-fast, and beautifully informative. Custom-tailored to show exactly what I need: Git status, language version, and more.
 
 ### 🖥️ ghostty
-A modern GPU-accelerated terminal emulator. Fast, beautiful, and built with developer ergonomics in mind. It fits right into my workflow with performance and polish.
+A GPU-accelerated terminal emulator that's fast, beautiful, and built with developer ergonomics in mind. Smooth rendering and high performance make it a key part of my daily workflow.
 
 ---
 
-## 🧰 Dotfiles Managed with chezmoi
+## 🛠 Dotfiles Managed with chezmoi
 
-[chezmoi](https://www.chezmoi.io/) is the tool I use to manage and deploy these dotfiles across multiple systems securely and reproducibly. It allows me to:
+[chezmoi](https://www.chezmoi.io/) is the backbone of this setup. It helps me:
 
-- 🔐 Track private and public configurations safely
-- 🔁 Keep everything in sync across machines
-- 🧪 Experiment without breaking my setup
+- 🔐 Manage private and public configs safely
+- ⚙️ Stay consistent across machines
+- 🧪 Experiment with changes without breaking things
+
+I can set up a new machine quickly and confidently with a single command.
 
 ---
 
 ## 📌 Features
 
-- 🔄 Cross-platform compatibility
-- ✨ Clean, minimal aesthetic
+- 🧹 Minimal, clean, and functional
 - 🧠 Smart defaults with powerful customizations
-- 🚀 Optimized for speed and productivity
+- 🔄 Cross-platform ready
+- ⚡ Optimized for performance and speed
+- 💡 Designed for clarity and efficiency
 
 ---
 
-## 🛠 Setup Instructions
+## 🧪 Setup Instructions
 
-> Coming soon...
+> Coming soon... (will include bootstrap steps using chezmoi)
 
 ---
 
 ## 📫 Feedback or Suggestions?
 
-Feel free to open an issue or submit a PR! Always happy to learn how others are tweaking their environments.
+Got an idea? Want to share your setup? Feel free to open an issue or a pull request. Always up for learning and improving!
 
 ---
 
