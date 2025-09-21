@@ -99,24 +99,22 @@ return {
       always_divide_middle = true,
       globalstatus = 1,
       refresh = {
-        statusline = 1000,
-        tabline = 1000,
-        winbar = 1000,
+        statusline = 1500,
+        tabline = 1500,
+        winbar = 1500,
       },
     }
 
     -- Set desired sections.
     opts.sections = {
-      lualine_a = { "mode" },
-      lualine_b = { "branch", "diff", "diagnostics" },
-      lualine_c = { "filename" },
-      lualine_x = {
-        { show_macro_recording },
-        { "progress",          separator = " ",                  padding = { left = 1, right = 0 } },
-        { "location",          padding = { left = 0, right = 1 } },
+      lualine_a = { "branch" },
+      lualine_b = {},
+      lualine_x = {},
+      lualine_y = {
+        { "progress", separator = " ", padding = { left = 1, right = 0 } },
+        { "location", padding = { left = 0, right = 1 } },
       },
-      lualine_y = { "fileformat", "filetype" },
-      lualine_z = { "encoding" },
+      lualine_z = {},
     }
 
     -- Set inactive sections.

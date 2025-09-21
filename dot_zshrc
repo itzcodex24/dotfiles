@@ -130,6 +130,7 @@ alias vs='code "$(fzf)"'
 alias test='yarn run test "$(fzf --query=.test)"'
 alias tp='jest_js "$(fzf)"'
 alias cat="bat"
+alias cd="z"
 alias lint='npx eslint --fix "$(fzf)"'
 alias codex='cmatrix'
 alias me='neofetch'
@@ -147,4 +148,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH=$HOME/dev/flutter/bin:$PATH
 
 
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"

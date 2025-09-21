@@ -1,66 +1,39 @@
 return {
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    opts = {
-      transparent_background = true,
-      integrations = {
-        aerial = true,
-        alpha = true,
-        cmp = true,
-        dashboard = true,
-        flash = true,
-        fzf = true,
-        grug_far = true,
-        gitsigns = true,
-        headlines = true,
-        illuminate = true,
-        indent_blankline = { enabled = true },
-        leap = true,
-        lsp_trouble = true,
-        mason = true,
-        markdown = true,
-        mini = true,
-        native_lsp = {
-          enabled = true,
-          underlines = {
-            errors = { "undercurl" },
-            hints = { "undercurl" },
-            warnings = { "undercurl" },
-            information = { "undercurl" },
-          },
-        },
-        navic = { enabled = true, custom_bg = "lualine" },
-        neotest = true,
-        neotree = true,
-        noice = true,
-        notify = true,
-        semantic_tokens = true,
-        snacks = true,
-        telescope = true,
-        treesitter = true,
-        treesitter_context = true,
-        which_key = true,
-      },
-    },
-    specs = {
-      {
-        "akinsho/bufferline.nvim",
-        optional = true,
-        opts = function(_, opts)
-          if (vim.g.colors_name or ""):find("catppuccin") then
-            opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
-          end
-        end,
-      },
-    },
-  },
-
-  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-frappe",
+      colorscheme = "kanso",
     },
+  },
+  {
+    "webhooked/kanso.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      bold = true,    -- enable bold fonts
+      italics = true, -- enable italics
+      compile = false, -- enable compiling the colorscheme
+      undercurl = true, -- enable undercurls
+      commentStyle = { italic = true },
+      functionStyle = {},
+      keywordStyle = { italic = true },
+      statementStyle = {},
+      typeStyle = {},
+      transparent = false, -- do not set background color
+      dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+      terminalColors = true, -- define vim.g.terminal_color_{0,17}
+      colors = {           -- add/modify theme and palette colors
+        palette = {},
+        theme = { zen = {}, pearl = {}, ink = {}, all = {} },
+      },
+      overrides = function(colors) -- add/modify highlights
+        return {}
+      end,
+      background = {  -- map the value of 'background' option to a theme
+        dark = "ink", -- try "zen", "mist" or "pearl" !
+        light = "ink" -- try "zen", "mist" or "pearl" !
+      },
+      foreground = "default",
+    }
   }
 }
