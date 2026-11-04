@@ -1,0 +1,29 @@
+{{ if eq .chezmoi.os "windows" -}}
+# Writes a managed block into the PowerShell profile (pwsh 7 + Windows PowerShell 5.1).
+# Re-runs whenever this file changes; only the block between the markers is touched.
+$start = "# >>> dotfiles >>>"
+$end   = "# <<< dotfiles <<<"
+$block = @"
+$start
+if (Get-Command starship -ErrorAction SilentlyContinue) { Invoke-Expression (&starship init powershell) }
+if (Get-Command zoxide -ErrorAction SilentlyContinue) { Invoke-Expression (& { (zoxide init powershell | Out-String) }) }
+Set-Alias v nvim
+Set-Alias lg lazygit
+$end
+"@
+
+$docs = [Environment]::GetFolderPath("MyDocuments")  # follows OneDrive redirection
+foreach ($dir in @("PowerShell", "WindowsPowerShell")) {
+  $profilePath = Join-Path $docs "$dir\profile.ps1"
+  New-Item -ItemType Directory -Force -Path (Split-Path $profilePath) | Out-Null
+  $content = "" + $(if (Test-Path $profilePath) { Get-Content $profilePath -Raw })
+  $pattern = "(?s)" + [regex]::Escape($start) + ".*?" + [regex]::Escape($end)
+  if ($content -match $pattern) {
+    $content = [regex]::Replace($content, $pattern, { param($m) $block })
+  } else {
+    $content = ($content.TrimEnd() + "`r`n`r`n" + $block + "`r`n").TrimStart()
+  }
+  Set-Content -Path $profilePath -Value $content -Encoding UTF8
+  Write-Host "dotfiles: updated $profilePath"
+}
+{{ end -}}
