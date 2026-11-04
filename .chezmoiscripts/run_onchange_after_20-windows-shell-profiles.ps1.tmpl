@@ -1,0 +1,55 @@
+{{ if eq .chezmoi.os "windows" -}}
+# Writes a managed block into the shell profiles used on Windows:
+#   PowerShell 7 + Windows PowerShell 5.1 (profile.ps1) and Git Bash (~/.bashrc).
+# Re-runs whenever this file changes; only the block between the markers is touched.
+$start = "# >>> dotfiles >>>"
+$end   = "# <<< dotfiles <<<"
+$utf8 = New-Object System.Text.UTF8Encoding($false)  # no BOM
+
+function Set-ManagedBlock($path, $block, $newline) {
+  New-Item -ItemType Directory -Force -Path (Split-Path $path) | Out-Null
+  $content = "" + $(if (Test-Path $path) { [IO.File]::ReadAllText($path) })
+  $pattern = "(?s)" + [regex]::Escape($start) + ".*?" + [regex]::Escape($end)
+  if ($content -match $pattern) {
+    $content = [regex]::Replace($content, $pattern, { param($m) $block })
+  } else {
+    $content = ($content.TrimEnd() + $newline + $newline + $block + $newline).TrimStart()
+  }
+  [IO.File]::WriteAllText($path, $content, $utf8)
+  Write-Host "dotfiles: updated $path"
+}
+
+# --- PowerShell -------------------------------------------------------------
+$psBlock = @(
+  $start,
+  'if (Get-Command starship -ErrorAction SilentlyContinue) { Invoke-Expression (&starship init powershell) }',
+  'if (Get-Command zoxide -ErrorAction SilentlyContinue) { Invoke-Expression (& { (zoxide init powershell | Out-String) }) }',
+  'Set-Alias v nvim',
+  'Set-Alias lg lazygit',
+  $end
+) -join "`r`n"
+$docs = [Environment]::GetFolderPath("MyDocuments")  # follows OneDrive redirection
+foreach ($dir in @("PowerShell", "WindowsPowerShell")) {
+  Set-ManagedBlock (Join-Path $docs "$dir\profile.ps1") $psBlock "`r`n"
+}
+
+# --- Git Bash ---------------------------------------------------------------
+$bashBlock = @(
+  $start,
+  'command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"',
+  'command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init bash)"',
+  'alias v=nvim',
+  'alias lg=lazygit',
+  $end
+) -join "`n"
+Set-ManagedBlock (Join-Path $env:USERPROFILE ".bashrc") $bashBlock "`n"
+
+# Git Bash is a login shell: it reads ~/.bash_profile, which must source ~/.bashrc
+$bp = Join-Path $env:USERPROFILE ".bash_profile"
+$bpContent = "" + $(if (Test-Path $bp) { [IO.File]::ReadAllText($bp) })
+if ($bpContent -notmatch "bashrc") {
+  $bpContent = ($bpContent.TrimEnd() + "`n`ntest -f ~/.bashrc && . ~/.bashrc`n").TrimStart()
+  [IO.File]::WriteAllText($bp, $bpContent, $utf8)
+  Write-Host "dotfiles: updated $bp"
+}
+{{ end -}}
