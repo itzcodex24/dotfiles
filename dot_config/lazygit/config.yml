@@ -1,0 +1,22 @@
+gui:
+  mouseEvents: false
+
+git:
+  autoFetch: false
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never --syntax-theme="Solarized (dark)"
+
+customCommands:
+  - key: "C"
+    context: "files"
+    description: "Commit with commitizen"
+    command: "git cz"
+    output: terminal
+  - key: "<c-g>"
+    context: "global"
+    description: "Commit with Claude (/commit)"
+    command: claude -p "/commit" --allowedTools "Bash(git *)" "Read" "Edit" 2>/dev/null
+    output: popup
+    outputTitle: "Claude /commit"
+    loadingText: "Claude is committing"

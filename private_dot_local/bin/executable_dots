@@ -1,0 +1,47 @@
+#!/bin/sh
+# dots: keep ~ in sync with github.com/itzcodex24/dotfiles (chezmoi)
+#
+#   dots status        what differs between ~ and the repo
+#   dots push [msg]    capture local changes, commit and push
+#   dots pull          pull the repo and apply it to ~
+#   dots add <path>    start tracking a new file or dir
+#   dots cd            open a shell in the repo
+set -e
+
+# dirs where new files should be picked up automatically on push
+TRACKED_DIRS="$HOME/.config/nvim $HOME/.claude/skills $HOME/.claude/commands"
+
+src=$(chezmoi source-path)
+
+case "${1:-status}" in
+  status|st)
+    chezmoi status
+    git -C "$src" status -sb
+    ;;
+  push|sync)
+    shift 2>/dev/null || true
+    chezmoi re-add
+    for d in $TRACKED_DIRS; do [ -e "$d" ] && chezmoi add "$d" >/dev/null; done
+    command -v brew >/dev/null && brew bundle dump --force --no-vscode --file="$src/Brewfile" >/dev/null
+    git -C "$src" add -A
+    if git -C "$src" diff --cached --quiet; then
+      echo "dots: nothing to push"
+    else
+      git -C "$src" diff --cached --stat
+      git -C "$src" commit -q -m "${*:-chore: sync dotfiles $(date +%Y-%m-%d)}"
+    fi
+    git -C "$src" push -q && echo "dots: pushed"
+    ;;
+  pull|update)
+    chezmoi update
+    ;;
+  add)
+    shift; chezmoi add "$@"
+    ;;
+  cd)
+    cd "$src" && exec "$SHELL"
+    ;;
+  *)
+    sed -n '2,8p' "$0" | sed 's/^# \{0,1\}//'
+    ;;
+esac

@@ -1,0 +1,21 @@
+# repo-only files (not applied to $HOME)
+README.md
+LICENSE
+bootstrap.sh
+
+# nested git repos / machine-local state
+.config/nvim/.git
+.config/nvim/.git/**
+.DS_Store
+**/.DS_Store
+Brewfile
+
+# Claude: only share my own skills (synced/vendor skills and trash stay local)
+.claude/skills/.trash
+.claude/skills/.trash/**
+.claude/skills/synced
+.claude/skills/synced/**
+.claude/skills/supacode-cli
+.claude/skills/supacode-cli/**
+.claude/skills/unslop
+.claude/skills/unslop/**

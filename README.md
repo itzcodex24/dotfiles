@@ -1,84 +1,66 @@
 <h1 align="center">
-  <a name="top" title="dotfiles">~/.&nbsp;📂</a><br/>
-  🛠️ My Dotfiles<br/>
-  <sub><sup>Powered by <a href="https://www.chezmoi.io/">chezmoi</a> 🏠</sup></sub>
+  ~/.&nbsp;📂<br/>
+  dotfiles<br/>
+  <sub><sup>managed with <a href="https://www.chezmoi.io/">chezmoi</a></sup></sub>
 </h1>
 
----
+My macOS dev setup: Neovim, tmux, Ghostty, zsh, lazygit and Claude Code. Feel free to take whatever's useful.
 
-## 📦 Overview
+## What's in here
 
-Welcome to my dotfiles! These configuration files power and personalize my development environment. Managed seamlessly with [chezmoi](https://www.chezmoi.io/) 🏠, this repo is the single source of truth for my terminal, editor, and CLI tools.
+| Path | What it is |
+| --- | --- |
+| `.config/nvim/` | Neovim 0.12+ config built on the native `vim.pack` manager (no LazyVim). It lives in `lua/codex/` and uses catppuccin, blink.cmp, treesitter, mini.diff, snacks, conform, Discord presence and a custom `codex` dashboard. It also runs on Windows. |
+| `.tmux.conf` | `C-a` prefix, vim-style panes, catppuccin (frappe) theme, resurrect/continuum. `prefix + Enter` toggles a Claude pane. |
+| `.config/tmux/claude-toggle.sh` | Opens a 35% Claude Code pane on the right, one per directory. Hidden panes keep running in a `_claude` session. |
+| `.config/ghostty/config` | Catppuccin Frappé palette, Fira Code, hidden titlebar, quick terminal on `cmd+b t`. |
+| `.zshrc` | oh-my-zsh + starship + zoxide + fzf and a lot of aliases. |
+| `.config/starship.toml` | Prompt. |
+| `.config/lazygit/config.yml` | delta pager. `C` runs commitizen; `ctrl+g` commits through Claude's `/commit` skill. |
+| `.config/zed/` | Zed settings, keymap and tasks. |
+| `.config/herdr/config.toml` | herdr config (an experiment at replacing tmux). |
+| `.claude/settings.json` | Claude Code settings: plugins, hooks, theme, no commit attribution. |
+| `.claude/skills/commit/` | `/commit` skill for conventional commits with a Jira key taken from the branch name. |
+| `.claude/commands/review.md` | `/review <pr>`: runs a critic review and turns it into short, human-sounding PR comments. |
+| `.local/bin/dots` | The helper script for keeping this repo in sync (see below). |
+| `Brewfile` | Everything installed through Homebrew. |
 
-> ⚠️ **Work in Progress**: Constantly evolving as I tweak, experiment, and optimize my workflow.
+## Install on a new machine
 
----
+```sh
+# 1. Homebrew + chezmoi
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install chezmoi
 
-## ⚙️ Tools I Use
+# 2. pull and apply the dotfiles
+chezmoi init --apply itzcodex24
 
-### 📝 Neovim (with LazyVim)
-My primary editor, supercharged with [LazyVim](https://www.lazyvim.org/) – a modular, lazy-loading plugin manager that keeps Neovim snappy and modern. Ideal for both coding and quick notes.
+# 3. install everything else
+brew bundle --file="$(chezmoi source-path)/Brewfile"
 
-### 🧰 tmux
-My terminal multiplexer of choice – [tmux](https://github.com/tmux/tmux) allows me to manage multiple terminal sessions efficiently. Paired with sensible keybindings and plugins for a seamless workflow across panes and windows.
+# 4. tmux plugins (then prefix + I inside tmux)
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
 
-### 💻 zsh
-My preferred shell, powered by a curated plugin ecosystem and theming via [starship](https://starship.rs/). It provides intelligent autosuggestions, syntax highlighting, and a rich interactive experience.
+You'll also want [oh-my-zsh](https://ohmyz.sh/). Neovim installs its own plugins on first launch.
 
-### 📊 lazygit
-A simple, fast, and powerful terminal UI for Git. I use it to manage commits, branches, and merge conflicts with ease – without leaving the terminal.
+> Want just one piece? Copy the file you need, e.g. `.config/nvim/` → `~/.config/nvim/`.
+> `chezmoi apply` **overwrites** the matching files in your home directory. Run `chezmoi diff` first if you're trying it on an existing setup.
 
-### 📁 yazi
-A modern, Rust-based terminal file manager – sleek, responsive, and packed with features. A joy to use compared to traditional alternatives.
+## Keeping it in sync
 
-### 🌌 starship
-My shell prompt of choice – minimal, blazing-fast, and beautifully informative. Custom-tailored to show exactly what I need: Git status, language version, and more.
+Day to day I edit the real files (`~/.config/nvim/...`, `~/.tmux.conf`, ...) and run:
 
-### 🖥️ ghostty
-A GPU-accelerated terminal emulator that's fast, beautiful, and built with developer ergonomics in mind. Smooth rendering and high performance make it a key part of my daily workflow.
+```sh
+dots status          # what changed locally vs the repo
+dots push            # capture changes, commit, push
+dots push "feat(nvim): add oil.nvim"   # same, with a commit message
+dots pull            # on another machine: pull + apply
+dots add ~/.config/foo   # start tracking something new
+```
 
-### 🍞 bun
-A modern JavaScript runtime like Node.js, but faster and more efficient. I use [bun](https://bun.sh/) for running scripts, managing packages, and building JS/TS projects at lightning speed.
+`dots push` runs `chezmoi re-add`. It also picks up new files in `~/.config/nvim` and `~/.claude/{skills,commands}` and refreshes the `Brewfile`.
 
-### 🍺 Homebrew
-The missing package manager for macOS (and Linux). I use [Homebrew](https://brew.sh/) to install and manage CLI tools, fonts, and GUI apps. It keeps my system tidy and my tools up-to-date.
+## Not in here
 
----
-
-## 🛠 Dotfiles Managed with chezmoi
-
-[chezmoi](https://www.chezmoi.io/) is the backbone of this setup. It helps me:
-
-- 🔐 Manage private and public configs safely
-- ⚙️ Stay consistent across machines
-- 🧪 Experiment with changes without breaking things
-
-I can set up a new machine quickly and confidently with a single command.
-
----
-
-## 📌 Features
-
-- 🧹 Minimal, clean, and functional
-- 🧠 Smart defaults with powerful customizations
-- 🔄 Cross-platform ready
-- ⚡ Optimized for performance and speed
-- 💡 Designed for clarity and efficiency
-
----
-
-## 🧪 Setup Instructions
-
-> Coming soon... (will include bootstrap steps using chezmoi)
-
----
-
-## 📫 Feedback or Suggestions?
-
-Got an idea? Want to share your setup? Feel free to open an issue or a pull request. Always up for learning and improving!
-
----
-
-<p align="center">
-  <a href="#top">🔝 Back to top</a>
-</p>
+Anything private or machine-specific is left out on purpose: git identity and signing config, SSH config, work-specific Claude agents, MCP and auth configs, and the Claude skills that are synced from my org or vendored from other tools.

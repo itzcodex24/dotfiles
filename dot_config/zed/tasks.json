@@ -1,0 +1,89 @@
+// Project tasks configuration. See https://zed.dev/docs/tasks for documentation.
+//
+// Example:
+[
+  {
+    "label": "LazyGit",
+    "command": "lazygit",
+    "use_new_terminal": false,
+    "reveal_target": "center",
+    "allow_concurrent_runs": false,
+    "env": {
+      "EDITOR": "zed -w",
+      "VISUAL": "zed -w",
+    },
+    "reveal": "always",
+    "hide": "on_success",
+    "shell": "system",
+  },
+  {
+    "label": "LazySQL",
+    "command": "lazysql",
+    "use_new_terminal": false,
+    "reveal_target": "center",
+    "allow_concurrent_runs": false,
+    "env": {
+      "EDITOR": "zed -w",
+      "VISUAL": "zed -w",
+    },
+    "reveal": "always",
+    "hide": "on_success",
+    "shell": "system",
+  },
+  {
+    "label": "LazyDocker",
+    "command": "lazydocker",
+    "use_new_terminal": false,
+    "reveal_target": "center",
+    "allow_concurrent_runs": false,
+    "env": {
+      "EDITOR": "zed -w",
+      "VISUAL": "zed -w",
+    },
+    "reveal": "always",
+    "hide": "on_success",
+    "shell": "system",
+  },
+  {
+    "label": "Claude Code",
+    "command": "claude",
+    "hide": "on_success",
+    "reveal_target": "center",
+    "env": {
+      "EDITOR": "zed",
+      "VISUAL": "zed",
+    },
+    "show_summary": false,
+    "show_command": false,
+    "allow_concurrent_runs": true,
+    "use_new_terminal": true,
+  },
+  {
+    "label": "Opencode",
+    "command": "opencode",
+    "hide": "on_success",
+    "reveal_target": "center",
+    "env": {
+      "EDITOR": "zed",
+      "VISUAL": "zed",
+    },
+    "show_summary": false,
+    "show_command": false,
+    "allow_concurrent_runs": true,
+    "use_new_terminal": true,
+  },
+  {
+    "label": "Evexi",
+    "command": "evx",
+    "hide": "on_success",
+    "reveal_target": "center",
+    "env": {
+      "EDITOR": "zed",
+      "VISUAL": "zed",
+    },
+    "show_summary": false,
+    "show_command": false,
+    "allow_concurrent_runs": true,
+    "use_new_terminal": true,
+  },
+]

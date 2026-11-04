@@ -1,0 +1,338 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+//
+[
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      // --- File/workspace navigation ---
+      "space space": "file_finder::Toggle",
+      "space c a": "editor::ToggleCodeActions",
+      // --- Splits (from <leader>sv / <leader>sx) ---
+      "space s v": "pane::SplitRight",
+      "space s h": "pane::SplitHorizontal",
+      "space s x": "pane::CloseActiveItem",
+      // --- Formatting ---
+      "space c f": "workspace::FormatAndSave",
+      // --- Pane movement (ctrl-h/j/k/l) ---
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      // --- Save (<BS> / :w) ---
+      "backspace": "workspace::Save",
+      // --- Tabs (BufferLineCycleNext/Prev) ---
+      "tab": "pane::ActivateNextItem",
+      "shift-tab": "pane::ActivatePreviousItem",
+      // --- Close tab/buffer (<leader>bd) ---
+      "space b d": "pane::CloseActiveItem",
+      // --- Go-to-definition in vertical split (gt) ---
+      "g t": "editor::GoToDefinitionSplit",
+      "g r": "editor::FindAllReferences",
+      // --- Copy file path (<leader>cp) ---
+      "space c p": "workspace::CopyPath",
+      // --- Open file in VS Code (<leader>on) ---
+      "space o n": "editor::RevealInFileManager",
+      // --- Markdown preview (<leader>mp) ---
+      "space m p": "markdown::OpenPreview",
+      "space a a": "agents_sidebar::ToggleThreadSwitcher",
+      "space a n": "agent::NewThread",
+      // --- Rename ---
+      "space c r": "editor::Rename"
+    }
+  },
+  {
+    "context": "EmptyPane || (Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu)",
+    "bindings": {
+      "space g g": [
+        "task::Spawn",
+        {
+          "task_name": "LazyGit",
+          "reveal_target": "center"
+        }
+      ],
+      "space l s": [
+        "task::Spawn",
+        {
+          "task_name": "LazySQL",
+          "reveal_target": "center"
+        }
+      ],
+      "space l d": [
+        "task::Spawn",
+        {
+          "task_name": "LazyDocker",
+          "reveal_target": "center"
+        }
+      ],
+      "space c c": [
+        "task::Spawn",
+        {
+          "task_name": "Claude Code",
+          "reveal_target": "center"
+        }
+      ],
+      "space o o": [
+        "task::Spawn",
+        {
+          "task_name": "Opencode",
+          "reveal_target": "center"
+        }
+      ],
+      "space e e": [
+        "task::Spawn",
+        {
+          "task_name": "Evexi",
+          "reveal_target": "center"
+        }
+      ],
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // jk / JK -> escape (from keymaps.lua: keymap.set("i", "jk", "<ESC>"))
+      "j k": "vim::NormalBefore",
+      "J K": "vim::NormalBefore",
+    }
+  },
+  {
+    "context": "Workspace && vim_mode != insert",
+    "bindings": {
+      "cmd-`": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-shift-e": "project_panel::Toggle",
+    }
+  },
+  {
+    "context": "MarkdownPreview",
+    "bindings": {
+      "j": "markdown::ScrollDown",
+      "k": "markdown::ScrollUp",
+      "shift-J": "markdown::ScrollDownByItem",
+      "shift-K": "markdown::ScrollUpByItem",
+    }
+  },
+  {
+    "context": "ProjectPanel && !editing",
+    "bindings": {
+      "a": "project_panel::NewFile"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "unbind": {
+      "cmd-n": "project_panel::NewFile"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-shift-n": "workspace::NewCenterTerminal"
+    }
+  },
+  {
+    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+    "bindings": {
+      "r": "editor::Rename"
+    }
+  },
+  {
+    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+    "unbind": {
+      "space r": "editor::Rename"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "r": "project_panel::Rename"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "unbind": {
+      "shift-r": "project_panel::Rename"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-shift-o": [
+        "projects::OpenRecent",
+        {
+          "create_new_window": false
+        }
+      ]
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "alt-cmd-o": [
+        "projects::OpenRecent",
+        {
+          "create_new_window": false
+        }
+      ]
+    }
+  },
+  {
+    "context": "BufferSearchBar",
+    "unbind": {
+      "cmd-shift-o": "outline::Toggle"
+    }
+  },
+  {
+    "context": "Editor && mode == full",
+    "unbind": {
+      "cmd-shift-o": "outline::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "space s s": "project_symbols::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "cmd-t": "project_symbols::Toggle"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "g b": "git::Blame"
+    }
+  },
+  {
+    "context": "!Editor && !Terminal",
+    "bindings": {
+      "space /": "pane::DeploySearch"
+    }
+  },
+  {
+    "context": "!Editor && !Terminal",
+    "unbind": {
+      "g /": "pane::DeploySearch"
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "space /": "pane::DeploySearch"
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "unbind": {
+      "g /": "pane::DeploySearch"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "d": "project_panel::Delete"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "unbind": {
+      "shift-d": "project_panel::Delete"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "cmd-shift-s": "workspace::SaveAs"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-shift-s": "workspace::SaveWithoutFormat"
+    }
+  },
+  {
+    "context": "NotebookEditor",
+    "unbind": {
+      "cmd-shift-r": "notebook::RestartKernel"
+    }
+  },
+  {
+    "context": "NotebookEditor > Editor",
+    "unbind": {
+      "cmd-shift-r": "notebook::RestartKernel"
+    }
+  },
+  {
+    "context": "Workspace && !Terminal",
+    "unbind": {
+      "cmd-shift-r": "task::Spawn"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "cmd-shift-r": "search::ToggleReplace"
+    }
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "cmd-shift-h": "search::ToggleReplace"
+    }
+  },
+  {
+    "context": "ProjectSearchView",
+    "bindings": {
+      "cmd-shift-r": "search::ToggleReplace"
+    }
+  },
+  {
+    "context": "ProjectSearchView",
+    "unbind": {
+      "cmd-shift-h": "search::ToggleReplace"
+    }
+  },
+  {
+    "context": "ProjectSearchBar",
+    "bindings": {
+      "cmd-shift-r": "search::ToggleReplace"
+    }
+  },
+  {
+    "context": "ProjectSearchBar",
+    "unbind": {
+      "cmd-shift-h": "search::ToggleReplace"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction",
+    "bindings": {
+      "tab": "editor::AcceptEditPrediction"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "] e": [
+        "editor::GoToDiagnostic",
+        {
+          "severity": {
+            "min": "error",
+            "max": "error"
+          }
+        }
+      ]
+    }
+  }
+]

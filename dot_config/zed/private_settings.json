@@ -1,0 +1,261 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "semantic_tokens": "off",
+  "edit_predictions": {
+    "provider": "zed"
+  },
+  "diagnostics_max_severity": "all",
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        }
+      },
+      "enable_lsp_tasks": true
+    },
+    "discord_presence": {
+      "initialization_options": {
+        "git_integration": true,
+        "idle": {
+          "timeout": 10000000
+        }
+      }
+    }
+  },
+  "debugger": {
+    "button": false
+  },
+  "search": {
+    "button": false
+  },
+  "cli_default_open_behavior": "existing_window",
+  "proxy": "",
+  "ssh_connections": [
+    {
+      "host": "51.75.146.96",
+      "username": "debian",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/debian"
+          ]
+        }
+      ],
+      "nickname": "Slax Logs  "
+    }
+  ],
+  "vim": {
+    "cursor_shape": {
+      "insert": "bar",
+    },
+    "use_system_clipboard": "always",
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true,
+    "highlight_on_yank_duration": 300,
+    "use_regex_search": true
+  },
+  "active_pane_modifiers": {
+    "border_size": 0,
+    "inactive_opacity": 1.0,
+  },
+  "inlay_hints": {
+    "enabled": false,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_other_hints": true,
+    "show_background": false,
+    "edit_debounce_ms": 500,
+    "scroll_debounce_ms": 50,
+    "toggle_on_modifiers_press": null,
+  },
+  "format_on_save": "off",
+  "auto_indent": "syntax_aware",
+  "auto_indent_on_paste": true,
+  "relative_line_numbers": "enabled",
+  "terminal": {
+    "button": true,
+    "font_family": "Fira Code",
+  },
+  "icon_theme": "Base Charmed Icons",
+  "vim_mode": true,
+  "agent_servers": {
+    "github-copilot-cli": {
+      "type": "registry",
+    },
+    "claude-acp": {
+      "type": "registry",
+    },
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "project_panel": {
+    "button": false,
+    "file_icons": true,
+    "dock": "right",
+    "default_width": 400,
+    "hide_root": true,
+    "auto_fold_dirs": false,
+    "starts_open": false,
+    "git_status": false,
+    "sticky_scroll": false,
+    "scrollbar": {
+      "show": "never"
+    },
+    "indent_guides": {
+      "show": "never"
+    }
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "agent": {
+    "default_model": {
+      "provider": "openai-subscribed",
+      "model": "gpt-5.5",
+      "enable_thinking": true,
+      "effort": "medium"
+    },
+    "tool_permissions": {
+      "tools": {
+        "fetch": {
+          "always_allow": [
+            {
+              "pattern": "^https?://zed\\.dev"
+            }
+          ]
+        },
+        "terminal": {
+          "default": "allow"
+        }
+      }
+    },
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4.6"
+    }
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "ui_font_size": 12,
+  "buffer_font_family": "Fira Code",
+  "buffer_font_size": 12,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Aura Dark",
+  },
+  "theme_overrides": {
+    "Aura Dark": {
+      "border.variant": "#15141C",
+      "border": "#15141C",
+      "title_bar.background": "#15141C",
+      "tab.inactive_background": "#15141C",
+      "tab_bar.background": "#15141C",
+      "panel.background": "#15141C",
+      "panel.focused_border": "#4E466E",
+      "error": "#FF5555",
+      "players": [
+        {
+          "cursor": "#bd9dff",
+        }
+      ],
+      "syntax": {
+        "comment": {
+          "font_style": "italic",
+          "background_color": "#ffffff05"
+        },
+        "comment.doc": {
+          "font_style": "italic"
+        },
+      },
+    },
+    "Catppuccin Frappé": {
+      "hint": "#ffffff50",
+      "border.variant": "#232634",
+      "border": "#232634",
+      "title_bar.background": "#232634",
+      "tab.inactive_background": "#232634",
+      "tab_bar.background": "#232634",
+      "panel.background": "#232634",
+      "panel.focused_border": "#4E466E",
+      "error": "#FF5555",
+      "players": [
+        {
+          "cursor": "#ca9ee6",
+        }
+      ],
+      "syntax": {
+        "comment": {
+          "font_style": "italic",
+          "background_color": "#ffffff05"
+        },
+        "comment.doc": {
+          "font_style": "italic",
+        },
+      },
+    }
+  },
+  "title_bar": {
+    "show_sign_in": false,
+    "button_layout": "platform_default",
+    "show_onboarding_banner": false,
+    "show_project_items": true,
+    "show_branch_name": true,
+    "show_user_menu": false,
+  },
+  "tab_bar": {
+    "show": true,
+    "show_tab_bar_buttons": false,
+    "show_nav_history_buttons": false,
+  },
+  "toolbar": {
+    "quick_actions": false,
+    "breadcrumbs": false
+  },
+  "status_bar": {
+    "cursor_position_button": false,
+    "active_language_button": false,
+    "experimental.show": true,
+    "show_active_file": true,
+  },
+  "file_finder": {
+    "modal_max_width": "large",
+  },
+  "formatter": "language_server",
+  "diagnostics": {
+    "include_warnings": false,
+    "inline": {
+      "enabled": true,
+      "padding": 8
+    },
+    "button": true
+  },
+  "use_system_path_prompts": false,
+  "use_system_prompts": false,
+}
