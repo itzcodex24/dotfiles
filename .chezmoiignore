@@ -19,3 +19,21 @@ Brewfile
 .claude/skills/supacode-cli/**
 .claude/skills/unslop
 .claude/skills/unslop/**
+
+{{ if eq .chezmoi.os "windows" }}
+# mac/unix-only on Windows
+.zshrc
+.tmux.conf
+.config/tmux
+.config/tmux/**
+.config/ghostty
+.config/ghostty/**
+.config/herdr
+.config/herdr/**
+.config/zed
+.config/zed/**
+.config/neofetch
+.config/neofetch/**
+.local
+.local/**
+{{ end }}

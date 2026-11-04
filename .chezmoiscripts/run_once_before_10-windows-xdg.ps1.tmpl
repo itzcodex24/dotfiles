@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "windows" -}}
+# Point nvim, lazygit, starship etc. at ~/.config so the same files work as on macOS.
+$cfg = Join-Path $env:USERPROFILE ".config"
+[Environment]::SetEnvironmentVariable("XDG_CONFIG_HOME", $cfg, "User")
+$env:XDG_CONFIG_HOME = $cfg
+Write-Host "XDG_CONFIG_HOME set to $cfg (open a new terminal to pick it up)"
+{{ end -}}

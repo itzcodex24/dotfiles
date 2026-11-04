@@ -47,6 +47,23 @@ You'll also want [oh-my-zsh](https://ohmyz.sh/). Neovim installs its own plugins
 > Want just one piece? Copy the file you need, e.g. `.config/nvim/` → `~/.config/nvim/`.
 > `chezmoi apply` **overwrites** the matching files in your home directory. Run `chezmoi diff` first if you're trying it on an existing setup.
 
+## Windows
+
+Only the cross-platform parts get applied: nvim, lazygit, starship and Claude Code. The Mac-only files are skipped.
+
+```powershell
+winget install twpayne.chezmoi Neovim.Neovim JesseDuffield.lazygit Starship.Starship
+chezmoi init --apply itzcodex24
+```
+
+The first apply sets the user env var `XDG_CONFIG_HOME=%USERPROFILE%\.config`, so Neovim reads `~\.config\nvim` (not `%LOCALAPPDATA%\nvim`). Open a new terminal afterwards. `dots` is a shell script, so on Windows use chezmoi directly:
+
+```powershell
+chezmoi update                          # pull + apply
+chezmoi re-add; chezmoi add ~/.config/nvim
+chezmoi git -- add -A; chezmoi git -- commit -m "..."; chezmoi git -- push
+```
+
 ## Keeping it in sync
 
 Day to day I edit the real files (`~/.config/nvim/...`, `~/.tmux.conf`, ...) and run:
