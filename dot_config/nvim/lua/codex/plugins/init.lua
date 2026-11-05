@@ -21,6 +21,7 @@ vim.pack.add({
 	"https://github.com/b0o/incline.nvim",
 	"https://github.com/folke/snacks.nvim",
 	"https://github.com/stevearc/oil.nvim",
+	"https://github.com/christoomey/vim-tmux-navigator",
 	"https://github.com/vyfor/cord.nvim",
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	"https://github.com/folke/todo-comments.nvim",

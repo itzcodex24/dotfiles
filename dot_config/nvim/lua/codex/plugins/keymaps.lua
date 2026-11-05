@@ -227,7 +227,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		bmap("n", "K", vim.lsp.buf.hover, "Hover")
 		bmap("n", "gK", vim.lsp.buf.signature_help, "Signature help")
 		bmap("i", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
-		bmap("n", "<C-j>", function()
+		bmap("n", "]e", function()
 			vim.diagnostic.jump({ count = 1, float = true })
 		end, "Next diagnostic")
 		bmap({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")

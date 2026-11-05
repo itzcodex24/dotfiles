@@ -5,6 +5,11 @@ require("oil").setup({
 	view_options = {
 		show_hidden = true,
 	},
+	-- Free <C-h>/<C-l> for split/tmux pane navigation
+	keymaps = {
+		["<C-h>"] = false,
+		["<C-l>"] = false,
+	},
 	lsp_file_methods = {
 		enabled = true,
 		autosave_changes = true,
