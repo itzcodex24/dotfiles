@@ -45,9 +45,8 @@ map("n", "[d", function()
 end, { desc = "Previous diagnostic" })
 
 -- Splits
-map("n", "ss", "<cmd>split<cr>", { desc = "Split below" })
 map("n", "sv", "<cmd>vsplit<cr>", { desc = "Split right" })
-map("n", "sh", "<C-w>h", { desc = "Window left" })
+map("n", "sh", "<cmd>split<cr>", { desc = "Split below" })
 map("n", "sj", "<C-w>j", { desc = "Window below" })
 map("n", "sk", "<C-w>k", { desc = "Window above" })
 map("n", "sl", "<C-w>l", { desc = "Window right" })
