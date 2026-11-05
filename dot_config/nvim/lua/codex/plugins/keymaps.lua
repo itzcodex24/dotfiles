@@ -24,6 +24,14 @@ end, { desc = "Notification history" })
 map("n", ";h", function()
 	Snacks.picker.git_diff()
 end, { desc = "Git hunks" })
+map("n", "ss", function()
+	-- LSP symbols when a server provides them, otherwise fall back to treesitter
+	if #vim.lsp.get_clients({ bufnr = 0, method = "textDocument/documentSymbol" }) > 0 then
+		Snacks.picker.lsp_symbols()
+	else
+		Snacks.picker.treesitter()
+	end
+end, { desc = "Symbols in file" })
 
 -- File explorer
 vim.api.nvim_create_autocmd("FileType", {
