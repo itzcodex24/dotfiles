@@ -37,6 +37,12 @@ end, { desc = "Next error" })
 map("n", "[e", function()
 	vim.diagnostic.jump({ count = -vim.v.count1, severity = vim.diagnostic.severity.ERROR, float = true })
 end, { desc = "Previous error" })
+map("n", "]d", function()
+	vim.diagnostic.jump({ count = vim.v.count1, float = true })
+end, { desc = "Next diagnostic" })
+map("n", "[d", function()
+	vim.diagnostic.jump({ count = -vim.v.count1, float = true })
+end, { desc = "Previous diagnostic" })
 
 -- Splits
 map("n", "ss", "<cmd>split<cr>", { desc = "Split below" })
