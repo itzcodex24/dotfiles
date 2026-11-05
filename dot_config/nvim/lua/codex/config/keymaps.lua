@@ -14,6 +14,14 @@ map("v", "<leader>p", '"0p', { desc = "Paste last yank" })
 map("n", "+", "<C-a>", { desc = "Increment number" })
 map("n", "-", "<C-x>", { desc = "Decrement number" })
 
+-- Undo/redo without the "N fewer lines; before #x" message
+map("n", "u", function()
+	vim.cmd("silent! normal! " .. vim.v.count1 .. "u")
+end, { desc = "Undo" })
+map("n", "<C-r>", function()
+	vim.cmd("silent! normal! " .. vim.v.count1 .. "\18")
+end, { desc = "Redo" })
+
 -- Select all
 map("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
 

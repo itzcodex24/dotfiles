@@ -31,7 +31,8 @@ opt.pumblend = 10
 opt.showmatch = true
 opt.matchtime = 2
 opt.title = true
-opt.fillchars:append({ diff = "╱" })
+opt.fillchars:append({ diff = "╱", eob = " " })
+opt.report = 9999
 
 -- Search, files, undo
 opt.ignorecase = true
