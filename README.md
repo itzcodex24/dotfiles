@@ -4,59 +4,59 @@
   <sub><sup>managed with <a href="https://www.chezmoi.io/">chezmoi</a></sup></sub>
 </h1>
 
-My macOS dev setup: Neovim, tmux, Ghostty, zsh, lazygit and Claude Code. Feel free to take whatever's useful.
+hey 👋 this is my setup on my mac. it's mostly neovim, tmux and ghostty, plus a bunch of claude code stuff i've been playing with lately. i tweak it pretty much every week so things move around a lot. if you find something you like just grab it.
 
-## What's in here
+## what's in here
 
-| Path | What it is |
-| --- | --- |
-| `.config/nvim/` | Neovim 0.12+ config built on the native `vim.pack` manager (no LazyVim). It lives in `lua/codex/` and uses catppuccin, blink.cmp, treesitter, mini.diff, snacks, conform, Discord presence and a custom `codex` dashboard. It also runs on Windows. |
-| `.tmux.conf` | `C-a` prefix, vim-style panes, catppuccin (frappe) theme, resurrect/continuum. `prefix + Enter` toggles a Claude pane. |
-| `.config/tmux/claude-toggle.sh` | Opens a 35% Claude Code pane on the right, one per directory. Hidden panes keep running in a `_claude` session. |
-| `.config/ghostty/config` | Catppuccin Frappé palette, Fira Code, hidden titlebar, quick terminal on `cmd+b t`. |
-| `.zshrc` | oh-my-zsh + starship + zoxide + fzf and a lot of aliases. |
-| `.config/starship.toml` | Prompt. |
-| `.config/lazygit/config.yml` | delta pager. `C` runs commitizen; `ctrl+g` commits through Claude's `/commit` skill. |
-| `.config/zed/` | Zed settings, keymap and tasks. |
-| `.config/herdr/config.toml` | herdr config (an experiment at replacing tmux). |
-| `.claude/settings.json` | Claude Code settings: plugins, hooks, theme, no commit attribution. |
-| `.claude/skills/commit/` | `/commit` skill for conventional commits with a Jira key taken from the branch name. |
-| `.claude/commands/review.md` | `/review <pr>`: runs a critic review and turns it into short, human-sounding PR comments. |
-| `.local/bin/dots` | The helper script for keeping this repo in sync (see below). |
-| `Brewfile` | Everything installed through Homebrew. |
+**neovim** (`.config/nvim/`) is the bit i spend the most time on. i used lazyvim for ages and eventually ripped it out and rebuilt everything on the new built-in `vim.pack` in 0.12. everything lives under `lua/codex/`. catppuccin, blink.cmp, snacks, conform, mini.diff, and yes discord presence because why not. it works on windows too which surprised me a bit.
 
-## Install on a new machine
+**tmux** (`.tmux.conf`) has the prefix on `C-a` because `C-b` is a stretch, vim keys for moving between panes and resurrect/continuum so i don't lose sessions on restart. `prefix + Enter` pops a claude code pane open on the right, which is honestly the thing i use most. that's handled by `.config/tmux/claude-toggle.sh`. you get one pane per directory, and when you hide it it keeps running in the background in a `_claude` session.
+
+**ghostty** is catppuccin frappé with fira code, no titlebar, and a quick terminal on `cmd+b t`.
+
+**zsh** is oh-my-zsh, starship, zoxide, fzf and way too many aliases. some of them i don't even remember adding.
+
+**lazygit** uses delta for diffs. `ctrl+g` writes the commit message with claude, which is lazy but i love it.
+
+then there's some random stuff:
+
+- `.config/zed/` because i still open zed every now and then
+- `.config/herdr/` from when i tried replacing tmux (didn't stick, yet)
+- `.claude/` with my claude code settings, a `/commit` skill and a `/review` command
+- `.local/bin/dots`, a tiny script i use to keep this repo in sync (more on that below)
+- `Brewfile` with everything i've got installed through brew
+
+## setting up a new mac
 
 ```sh
-# 1. Homebrew + chezmoi
+# brew + chezmoi
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install chezmoi
 
-# 2. pull and apply the dotfiles
+# grab the dotfiles and apply them
 chezmoi init --apply itzcodex24
 
-# 3. install everything else
+# install everything from the Brewfile
 brew bundle --file="$(chezmoi source-path)/Brewfile"
 
-# 4. tmux plugins (then prefix + I inside tmux)
+# tmux plugins (then prefix + I inside tmux)
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-You'll also want [oh-my-zsh](https://ohmyz.sh/). Neovim installs its own plugins on first launch.
+you'll need [oh-my-zsh](https://ohmyz.sh/) as well. neovim sorts its own plugins out the first time you open it.
 
-> Want just one piece? Copy the file you need, e.g. `.config/nvim/` → `~/.config/nvim/`.
-> `chezmoi apply` **overwrites** the matching files in your home directory. Run `chezmoi diff` first if you're trying it on an existing setup.
+careful though, `chezmoi apply` will overwrite your existing files. if you've already got your own setup run `chezmoi diff` first, or just copy the folder you want by hand.
 
-## Windows
+## windows
 
-Only the cross-platform parts get applied: nvim, lazygit, starship and Claude Code. The Mac-only files are skipped.
+i don't use windows much but sometimes i have to, so the stuff that actually works there (nvim, lazygit, starship, claude code) gets applied and the rest is skipped.
 
 ```powershell
 winget install twpayne.chezmoi Neovim.Neovim JesseDuffield.lazygit Starship.Starship
 chezmoi init --apply itzcodex24
 ```
 
-The first apply sets the user env var `XDG_CONFIG_HOME=%USERPROFILE%\.config`, so Neovim reads `~\.config\nvim` (not `%LOCALAPPDATA%\nvim`). Open a new terminal afterwards. `dots` is a shell script, so on Windows use chezmoi directly:
+the first run sets `XDG_CONFIG_HOME` to `%USERPROFILE%\.config` so nvim reads from `~\.config\nvim` like on mac. you'll need to open a new terminal after. `dots` doesn't work there since it's a shell script, so i just use chezmoi directly:
 
 ```powershell
 chezmoi update                          # pull + apply
@@ -64,20 +64,20 @@ chezmoi re-add; chezmoi add ~/.config/nvim
 chezmoi git -- add -A; chezmoi git -- commit -m "..."; chezmoi git -- push
 ```
 
-## Keeping it in sync
+## keeping it in sync
 
-Day to day I edit the real files (`~/.config/nvim/...`, `~/.tmux.conf`, ...) and run:
+i just edit the real files like normal and when i'm happy with something:
 
 ```sh
-dots status          # what changed locally vs the repo
-dots push            # capture changes, commit, push
-dots push "feat(nvim): add oil.nvim"   # same, with a commit message
-dots pull            # on another machine: pull + apply
-dots add ~/.config/foo   # start tracking something new
+dots status          # what's changed
+dots push            # commit + push everything
+dots push "feat(nvim): add oil.nvim"   # same but with a proper message
+dots pull            # on the other machine
+dots add ~/.config/foo   # track something new
 ```
 
-`dots push` runs `chezmoi re-add`. It also picks up new files in `~/.config/nvim` and `~/.claude/{skills,commands}` and refreshes the `Brewfile`.
+`dots push` also picks up new files in my nvim and claude folders automatically and refreshes the Brewfile, so i don't forget stuff.
 
-## Not in here
+## what's not in here
 
-Anything private or machine-specific is left out on purpose: git identity and signing config, SSH config, work-specific Claude agents, MCP and auth configs, and the Claude skills that are synced from my org or vendored from other tools.
+anything private like my git identity, ssh config, work related stuff and anything with auth in it stays on my machine.
