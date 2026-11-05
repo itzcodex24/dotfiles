@@ -37,7 +37,7 @@ Examples:
 
 Rules:
 - The whole first line is **at most 70 characters**, imperative, lowercase after the colon, with no trailing period.
-- `type`: `feat`, `fix`, `refactor`, `perf`, `docs`, `style`, `test`, `chore`.
+- `type`: `feat`, `fix`, `tweak`, `perf`, `docs`, `style`, `test`, `chore`.
 - `scope`: **ALWAYS required, never leave it out.** Every message starts `type(scope):`. Use the area/module affected (e.g. `impact`, `brightsign`, `playback`, `readme`, `nvim`, `tmux`). If the change touches several areas, use the main one, or a broader scope that covers them (e.g. `deps`, `config`, `repo`).
 - `(<JIRA>)`: take it from the branch name (e.g. `pl-513-message-priorities` → `PL-513`). Leave it out if there's none. Never make one up.
 - Add a short body only when the *why* isn't obvious from the subject.
