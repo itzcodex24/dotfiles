@@ -224,9 +224,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		bmap("n", "<leader>cR", function()
 			Snacks.rename.rename_file()
 		end, "Rename file")
-		bmap({ "n", "x" }, "<leader>f", function()
-			require("conform").format({ lsp_format = "fallback" })
-		end, "Format")
 		bmap("n", "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", "LSP info")
 	end,
 })

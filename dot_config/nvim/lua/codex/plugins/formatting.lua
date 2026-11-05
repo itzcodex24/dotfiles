@@ -41,10 +41,8 @@ require("conform").setup({
 			end,
 		},
 	},
-	format_on_save = function(bufnr)
-		if vim.b[bufnr].disable_autoformat then
-			return
-		end
-		return { timeout_ms = 1000, lsp_format = "fallback" }
-	end,
 })
+
+vim.keymap.set({ "n", "x" }, "<leader>cf", function()
+	require("conform").format({ lsp_format = "fallback" })
+end, { desc = "Format file" })
