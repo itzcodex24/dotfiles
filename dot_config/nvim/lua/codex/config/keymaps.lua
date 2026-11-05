@@ -50,6 +50,7 @@ map("n", "sh", "<cmd>split<cr>", { desc = "Split below" })
 map("n", "sj", "<C-w>j", { desc = "Window below" })
 map("n", "sk", "<C-w>k", { desc = "Window above" })
 map("n", "sl", "<C-w>l", { desc = "Window right" })
+map("n", "sx", "<cmd>close<cr>", { desc = "Close window" })
 
 -- Agentic coding helpers
 map("n", "<leader>cp", Codex.editor.copy_path, { desc = "Copy path with line" })

@@ -16,7 +16,7 @@
       // --- Splits (from <leader>sv / <leader>sx) ---
       "space s v": "pane::SplitRight",
       "space s h": "pane::SplitHorizontal",
-      "space s x": "pane::CloseAllItems",
+      "space s x": "pane::CloseActiveItem",
       // --- Formatting ---
       "space c f": "workspace::FormatAndSave",
       // --- Pane movement (ctrl-h/j/k/l) ---
