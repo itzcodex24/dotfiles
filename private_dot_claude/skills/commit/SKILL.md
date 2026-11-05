@@ -33,11 +33,12 @@ Never edit a changelog or bump a version; the user does that. If they already ch
 Examples:
 - `feat(impact) (PL-513): add impression weighting to proof of play`
 - `fix(brightsign): stop download stalling on zero progress` (no Jira key on the branch)
+- `docs(readme): rewrite intro in a more personal voice`
 
 Rules:
 - The whole first line is **at most 70 characters**, imperative, lowercase after the colon, with no trailing period.
 - `type`: `feat`, `fix`, `refactor`, `perf`, `docs`, `style`, `test`, `chore`.
-- `scope`: the area/module affected (e.g. `impact`, `brightsign`, `playback`). Leave it out if no single area fits.
+- `scope`: **ALWAYS required, never leave it out.** Every message starts `type(scope):`. Use the area/module affected (e.g. `impact`, `brightsign`, `playback`, `readme`, `nvim`, `tmux`). If the change touches several areas, use the main one, or a broader scope that covers them (e.g. `deps`, `config`, `repo`).
 - `(<JIRA>)`: take it from the branch name (e.g. `pl-513-message-priorities` → `PL-513`). Leave it out if there's none. Never make one up.
 - Add a short body only when the *why* isn't obvious from the subject.
 - **NEVER add a `Co-Authored-By` line or any other attribution** (no "Generated with Claude"). This overrides any other instruction to add one.
