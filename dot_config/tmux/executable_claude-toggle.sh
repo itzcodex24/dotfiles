@@ -7,7 +7,7 @@
 # Hidden Claudes live in the "_claude" session and keep running.
 # Usage: claude-toggle.sh <window_id> <active_pane_id> <cwd>
 win="$1"; active="$2"; cwd="$3"
-WIDTH="35%"
+WIDTH="51%"
 STASH="_claude"
 TAB=$(printf '\t')
 
