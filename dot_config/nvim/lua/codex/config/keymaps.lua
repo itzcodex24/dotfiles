@@ -30,6 +30,14 @@ end, { desc = "Save buffer" })
 map("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 
+-- Diagnostics
+map("n", "]e", function()
+	vim.diagnostic.jump({ count = vim.v.count1, severity = vim.diagnostic.severity.ERROR, float = true })
+end, { desc = "Next error" })
+map("n", "[e", function()
+	vim.diagnostic.jump({ count = -vim.v.count1, severity = vim.diagnostic.severity.ERROR, float = true })
+end, { desc = "Previous error" })
+
 -- Splits
 map("n", "ss", "<cmd>split<cr>", { desc = "Split below" })
 map("n", "sv", "<cmd>vsplit<cr>", { desc = "Split right" })
