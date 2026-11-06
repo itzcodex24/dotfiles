@@ -1,6 +1,10 @@
 -- Completion
 require("blink.cmp").setup({
-	keymap = { preset = "enter" },
+	keymap = {
+		preset = "enter",
+		["<C-j>"] = { "select_next", "fallback" },
+		["<C-k>"] = { "select_prev", "fallback" },
+	},
 	completion = {
 		accept = {
 			auto_brackets = { enabled = true },
@@ -29,6 +33,11 @@ require("blink.cmp").setup({
 		},
 	},
 	cmdline = {
+		keymap = {
+			preset = "cmdline",
+			["<C-j>"] = { "select_next", "fallback" },
+			["<C-k>"] = { "select_prev", "fallback" },
+		},
 		completion = {
 			menu = {
 				auto_show = function()
